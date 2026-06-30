@@ -8,313 +8,378 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans TC', sans-serif; background: #F7F3EE; color: #2C2118; }
 :root {
-  --cream: #F7F3EE;
-  --warm-white: #FDF9F5;
-  --brown-light: #E8DDD2;
-  --brown-mid: #C4A882;
-  --brown-dark: #8B6347;
-  --brown-deep: #5C3D22;
-  --milk-tea: #D4B896;
-  --accent: #A67C52;
-  --green-sage: #8A9E7E;
-  --value-color: #7A6B52;
-  --value-bg: #F0E8DA;
-  --text-main: #2C2118;
-  --text-sub: #7A6553;
-  --text-muted: #B09880;
-  --border: #DDD0C2;
+  --cream: #F7F3EE; --warm-white: #FDF9F5; --brown-light: #E8DDD2;
+  --brown-mid: #C4A882; --brown-dark: #8B6347; --brown-deep: #5C3D22;
+  --accent: #A67C52; --text-main: #2C2118; --text-sub: #7A6553;
+  --text-muted: #B09880; --border: #DDD0C2;
 }
-.wrap { max-width: 640px; margin: 0 auto; padding: 2rem 1.25rem; position: relative; overflow: visible; }
-.leaf-deco { position: absolute; opacity: 0.15; pointer-events: none; z-index: 0; }
+.wrap { max-width: 640px; margin: 0 auto; padding: 2rem 1.25rem; position: relative; overflow: hidden; }
 .content { position: relative; z-index: 1; }
+.leaf-deco { position: absolute; opacity: 0.15; pointer-events: none; z-index: 0; }
 .progress-bg { height: 3px; background: var(--brown-light); border-radius: 2px; margin-bottom: 2rem; }
 .progress-fill { height: 3px; background: var(--brown-dark); border-radius: 2px; transition: width 0.4s ease; }
 .q-meta { font-size: 12px; color: var(--text-muted); letter-spacing: 0.06em; margin-bottom: 0.5rem; }
-.q-tag { display: inline-block; font-size: 11px; padding: 2px 10px; border-radius: 20px; margin-bottom: 0.85rem; font-weight: 500; letter-spacing: 0.03em; }
-.tag-self { background: #EDE3D8; color: var(--brown-deep); }
-.tag-rel { background: #DDE8D8; color: #3D5C35; }
-.tag-val { background: #F0E8DA; color: var(--value-color); }
+.q-tag { display: inline-block; font-size: 11px; padding: 2px 10px; border-radius: 20px; margin-bottom: 0.85rem; font-weight: 500; }
+.tag-0 { background: #EDE3D8; color: #5C3D22; }
+.tag-1 { background: #E8E3F0; color: #3D2B6B; }
+.tag-2 { background: #F0EAD8; color: #5C4A1A; }
+.tag-3 { background: #DDE8D8; color: #2E4A28; }
+.tag-4 { background: #F0D8D8; color: #6B2828; }
+.tag-5 { background: #D8E8E8; color: #1A4A4A; }
 .q-text { font-size: 17px; font-weight: 400; color: var(--text-main); line-height: 1.8; margin-bottom: 1.75rem; }
-.freq-group { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 0.5rem; }
-.freq-btn { padding: 0.85rem 0.5rem; background: var(--warm-white); border: 1px solid var(--border); border-radius: 12px; font-size: 14px; color: var(--text-sub); cursor: pointer; transition: all 0.15s; text-align: center; line-height: 1.4; }
+.freq-group { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.freq-btn { padding: 0.85rem 0.5rem; background: var(--warm-white); border: 1px solid var(--border); border-radius: 12px; font-size: 14px; color: var(--text-sub); cursor: pointer; transition: all 0.2s; text-align: center; line-height: 1.4; }
 .freq-btn:hover { background: #EDE3D8; border-color: var(--brown-mid); }
 .freq-btn.sel { background: #EDE3D8; border: 2px solid var(--brown-dark); color: var(--brown-deep); font-weight: 500; }
 .nav { display: flex; justify-content: space-between; align-items: center; margin-top: 1.75rem; }
-.btn-next { padding: 0.65rem 1.5rem; background: var(--brown-dark); color: #FDF9F5; border: none; border-radius: 8px; font-size: 15px; cursor: pointer; font-weight: 500; }
-.btn-next:disabled { opacity: 0.3; cursor: not-allowed; }
 .btn-back { padding: 0.65rem 1rem; background: transparent; border: 1px solid var(--border); border-radius: 8px; font-size: 14px; color: var(--text-muted); cursor: pointer; }
 .block { background: var(--warm-white); border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.1rem; margin-bottom: 0.75rem; }
 .block-label { font-size: 11px; color: var(--text-muted); letter-spacing: 0.08em; margin-bottom: 0.4rem; text-transform: uppercase; }
 .block-text { font-size: 14px; color: var(--text-sub); line-height: 1.7; }
 .divider { height: 1px; background: var(--brown-light); margin: 1.25rem 0; }
-.mail-card { border: 1.5px solid var(--brown-mid); border-radius: 12px; padding: 1.25rem; margin-top: 1.5rem; background: var(--warm-white); }
-.mail-title { font-size: 16px; font-weight: 500; margin-bottom: 0.4rem; color: var(--text-main); }
-.mail-desc { font-size: 14px; color: var(--text-sub); line-height: 1.6; margin-bottom: 1rem; }
-.mail-row { display: flex; gap: 8px; flex-wrap: wrap; }
-.mail-input { flex: 1; min-width: 200px; padding: 0.65rem 0.9rem; border: 1px solid var(--border); border-radius: 8px; font-size: 14px; background: var(--cream); color: var(--text-main); }
-.mail-input:focus { outline: none; border-color: var(--brown-dark); }
-.mail-btn { padding: 0.65rem 1.25rem; background: var(--brown-dark); color: #FDF9F5; border: none; border-radius: 8px; font-size: 14px; font-weight: 500; cursor: pointer; white-space: nowrap; }
-.sent { font-size: 14px; color: #3D5C35; background: #DDE8D8; border-radius: 8px; padding: 0.65rem 1rem; text-align: center; }
 .cta-area { margin-top:1.25rem; background: var(--warm-white); border: 1.5px solid var(--brown-mid); border-radius: 12px; padding: 1.25rem; position: relative; overflow: hidden; }
 .cta-label { font-size:11px; color: var(--accent); letter-spacing:0.1em; font-weight:500; margin-bottom:0.5rem; }
 .cta-title { font-size:16px; font-weight:500; color: var(--text-main); margin-bottom:0.5rem; }
 .cta-desc { font-size:14px; color: var(--text-sub); line-height:1.75; margin-bottom:1rem; }
 .cta-btn { display:block; padding:0.75rem 1.5rem; background: var(--brown-dark); color:#FDF9F5; border:none; border-radius:8px; font-size:15px; font-weight:500; cursor:pointer; text-align:center; width:100%; }
-.score-circle { width: 72px; height: 72px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 500; flex-shrink: 0; }
-.grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 1.25rem; }
-.dim-bar-bg { height: 4px; background: var(--brown-light); border-radius: 3px; margin-top: 5px; }
-.dim-bar-fill { height: 4px; border-radius: 3px; }
+.dim-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 1.25rem; }
+.dim-card { background: var(--warm-white); border: 1px solid var(--border); border-radius: 10px; padding: 0.75rem; }
+.dim-name { font-size: 11px; color: var(--text-muted); margin-bottom: 3px; }
+.dim-label { font-size: 13px; font-weight: 500; margin-bottom: 5px; }
+.dim-bar-bg { height: 4px; background: var(--brown-light); border-radius: 2px; }
+.dim-bar-fill { height: 4px; border-radius: 2px; }
+.plant-icon { width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
 </style>
 </head>
 <body>
 <div id="app"></div>
 <script>
+// ── SVG decorations ──
 function leafSvg(w,h,v){
-  const s="#8B6347", n=v%4;
-  if(n===0) return `<svg width="${w}" height="${h}" viewBox="0 0 60 100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M30 95 C10 70 5 40 30 5 C55 40 50 70 30 95Z" stroke="${s}" stroke-width="1.2" fill="none"/><line x1="30" y1="95" x2="30" y2="5" stroke="${s}" stroke-width="0.8"/><line x1="30" y1="70" x2="18" y2="52" stroke="${s}" stroke-width="0.6"/><line x1="30" y1="70" x2="42" y2="52" stroke="${s}" stroke-width="0.6"/><line x1="30" y1="50" x2="15" y2="35" stroke="${s}" stroke-width="0.6"/><line x1="30" y1="50" x2="45" y2="35" stroke="${s}" stroke-width="0.6"/></svg>`;
-  if(n===1) return `<svg width="${w}" height="${h}" viewBox="0 0 80 60" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 30 C20 5 60 5 75 30 C60 55 20 55 5 30Z" stroke="${s}" stroke-width="1.2" fill="none"/><line x1="5" y1="30" x2="75" y2="30" stroke="${s}" stroke-width="0.8"/><line x1="25" y1="30" x2="18" y2="16" stroke="${s}" stroke-width="0.6"/><line x1="25" y1="30" x2="18" y2="44" stroke="${s}" stroke-width="0.6"/><line x1="45" y1="30" x2="38" y2="14" stroke="${s}" stroke-width="0.6"/><line x1="45" y1="30" x2="38" y2="46" stroke="${s}" stroke-width="0.6"/></svg>`;
-  if(n===2) return `<svg width="${w}" height="${h}" viewBox="0 0 50 90" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M25 85 C5 60 8 20 25 5 C42 20 45 60 25 85Z" stroke="${s}" stroke-width="1.2" fill="none"/><path d="M25 85 C25 60 25 20 25 5" stroke="${s}" stroke-width="0.8"/><path d="M25 60 Q14 48 10 38" stroke="${s}" stroke-width="0.6" fill="none"/><path d="M25 60 Q36 48 40 38" stroke="${s}" stroke-width="0.6" fill="none"/><path d="M25 40 Q15 28 12 20" stroke="${s}" stroke-width="0.6" fill="none"/><path d="M25 40 Q35 28 38 20" stroke="${s}" stroke-width="0.6" fill="none"/></svg>`;
-  return `<svg width="${w}" height="${h}" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M35 65 C10 50 5 20 35 5 C65 20 60 50 35 65Z" stroke="${s}" stroke-width="1.2" fill="none"/><line x1="35" y1="65" x2="35" y2="5" stroke="${s}" stroke-width="0.8"/><line x1="35" y1="48" x2="22" y2="35" stroke="${s}" stroke-width="0.6"/><line x1="35" y1="48" x2="48" y2="35" stroke="${s}" stroke-width="0.6"/><line x1="35" y1="30" x2="20" y2="20" stroke="${s}" stroke-width="0.6"/><line x1="35" y1="30" x2="50" y2="20" stroke="${s}" stroke-width="0.6"/></svg>`;
+  const s="#8B6347",n=v%4;
+  if(n===0) return `<svg width="${w}" height="${h}" viewBox="0 0 60 100" fill="none"><path d="M30 95 C10 70 5 40 30 5 C55 40 50 70 30 95Z" stroke="${s}" stroke-width="1.2" fill="none"/><line x1="30" y1="95" x2="30" y2="5" stroke="${s}" stroke-width="0.8"/><line x1="30" y1="70" x2="18" y2="52" stroke="${s}" stroke-width="0.6"/><line x1="30" y1="70" x2="42" y2="52" stroke="${s}" stroke-width="0.6"/><line x1="30" y1="50" x2="15" y2="35" stroke="${s}" stroke-width="0.6"/><line x1="30" y1="50" x2="45" y2="35" stroke="${s}" stroke-width="0.6"/></svg>`;
+  if(n===1) return `<svg width="${w}" height="${h}" viewBox="0 0 80 60" fill="none"><path d="M5 30 C20 5 60 5 75 30 C60 55 20 55 5 30Z" stroke="${s}" stroke-width="1.2" fill="none"/><line x1="5" y1="30" x2="75" y2="30" stroke="${s}" stroke-width="0.8"/><line x1="25" y1="30" x2="18" y2="16" stroke="${s}" stroke-width="0.6"/><line x1="45" y1="30" x2="38" y2="14" stroke="${s}" stroke-width="0.6"/></svg>`;
+  if(n===2) return `<svg width="${w}" height="${h}" viewBox="0 0 50 90" fill="none"><path d="M25 85 C5 60 8 20 25 5 C42 20 45 60 25 85Z" stroke="${s}" stroke-width="1.2" fill="none"/><path d="M25 85 C25 60 25 20 25 5" stroke="${s}" stroke-width="0.8"/><path d="M25 60 Q14 48 10 38" stroke="${s}" stroke-width="0.6" fill="none"/><path d="M25 60 Q36 48 40 38" stroke="${s}" stroke-width="0.6" fill="none"/></svg>`;
+  return `<svg width="${w}" height="${h}" viewBox="0 0 70 70" fill="none"><path d="M35 65 C10 50 5 20 35 5 C65 20 60 50 35 65Z" stroke="${s}" stroke-width="1.2" fill="none"/><line x1="35" y1="65" x2="35" y2="5" stroke="${s}" stroke-width="0.8"/><line x1="35" y1="48" x2="22" y2="35" stroke="${s}" stroke-width="0.6"/><line x1="35" y1="48" x2="48" y2="35" stroke="${s}" stroke-width="0.6"/></svg>`;
 }
-function stemSvg(h,s="#8B6347"){
-  return `<svg width="18" height="${h}" viewBox="0 0 18 ${h}" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M9 ${h} C9 ${h*0.7} 3 ${h*0.5} 5 ${h*0.3} C7 ${h*0.15} 9 ${h*0.05} 9 0" stroke="${s}" stroke-width="1" fill="none"/>
-    <path d="M9 ${h*0.6} C13 ${h*0.5} 15 ${h*0.35} 13 ${h*0.2}" stroke="${s}" stroke-width="0.7" fill="none"/>
-    <path d="M9 ${h*0.75} C5 ${h*0.65} 3 ${h*0.5} 5 ${h*0.38}" stroke="${s}" stroke-width="0.7" fill="none"/>
-  </svg>`;
-}
-function clusterSvg(s="#8B6347"){
-  return `<svg width="90" height="110" viewBox="0 0 90 110" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M45 105 C45 80 38 55 45 10" stroke="${s}" stroke-width="1.1" fill="none"/>
-    <path d="M45 30 C30 15 12 18 10 30 C8 42 25 45 45 30Z" stroke="${s}" stroke-width="1" fill="none"/>
-    <line x1="10" y1="30" x2="45" y2="30" stroke="${s}" stroke-width="0.6"/>
-    <path d="M45 50 C60 35 78 38 80 50 C82 62 65 65 45 50Z" stroke="${s}" stroke-width="1" fill="none"/>
-    <line x1="80" y1="50" x2="45" y2="50" stroke="${s}" stroke-width="0.6"/>
-    <path d="M45 72 C28 58 10 62 8 74 C6 86 24 88 45 72Z" stroke="${s}" stroke-width="1" fill="none"/>
-    <line x1="8" y1="74" x2="45" y2="74" stroke="${s}" stroke-width="0.6"/>
-  </svg>`;
-}
-function fernSvg(s="#8B6347"){
-  return `<svg width="70" height="100" viewBox="0 0 70 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M35 98 C35 70 35 30 35 2" stroke="${s}" stroke-width="1" fill="none"/>
-    <path d="M35 80 C22 68 8 70 6 80 C4 90 20 92 35 80Z" stroke="${s}" stroke-width="0.9" fill="none"/>
-    <path d="M35 62 C48 50 62 52 64 62 C66 72 50 74 35 62Z" stroke="${s}" stroke-width="0.9" fill="none"/>
-    <path d="M35 44 C20 32 8 35 6 44 C4 53 22 55 35 44Z" stroke="${s}" stroke-width="0.9" fill="none"/>
-    <path d="M35 26 C48 15 60 18 62 26 C64 34 50 36 35 26Z" stroke="${s}" stroke-width="0.9" fill="none"/>
-  </svg>`;
-}
+function clusterSvg(){const s="#8B6347";return `<svg width="90" height="110" viewBox="0 0 90 110" fill="none"><path d="M45 105 C45 80 38 55 45 10" stroke="${s}" stroke-width="1.1" fill="none"/><path d="M45 30 C30 15 12 18 10 30 C8 42 25 45 45 30Z" stroke="${s}" stroke-width="1" fill="none"/><line x1="10" y1="30" x2="45" y2="30" stroke="${s}" stroke-width="0.6"/><path d="M45 50 C60 35 78 38 80 50 C82 62 65 65 45 50Z" stroke="${s}" stroke-width="1" fill="none"/><line x1="80" y1="50" x2="45" y2="50" stroke="${s}" stroke-width="0.6"/><path d="M45 72 C28 58 10 62 8 74 C6 86 24 88 45 72Z" stroke="${s}" stroke-width="1" fill="none"/></svg>`;}
+function fernSvg(){const s="#8B6347";return `<svg width="70" height="100" viewBox="0 0 70 100" fill="none"><path d="M35 98 C35 70 35 30 35 2" stroke="${s}" stroke-width="1" fill="none"/><path d="M35 80 C22 68 8 70 6 80 C4 90 20 92 35 80Z" stroke="${s}" stroke-width="0.9" fill="none"/><path d="M35 62 C48 50 62 52 64 62 C66 72 50 74 35 62Z" stroke="${s}" stroke-width="0.9" fill="none"/><path d="M35 44 C20 32 8 35 6 44 C4 53 22 55 35 44Z" stroke="${s}" stroke-width="0.9" fill="none"/><path d="M35 26 C48 15 60 18 62 26 C64 34 50 36 35 26Z" stroke="${s}" stroke-width="0.9" fill="none"/></svg>`;}
 function decoLeaves(v){
-  const n = v % 3;
-  if(n===0) return `
-    <div class="leaf-deco" style="top:-8px;right:-6px;transform:rotate(18deg)">${leafSvg(55,90,v)}</div>
-    <div class="leaf-deco" style="top:30px;right:30px;transform:rotate(-10deg);opacity:0.09">${leafSvg(30,50,v+2)}</div>
-    <div class="leaf-deco" style="bottom:5px;left:-10px;transform:rotate(-28deg) scaleX(-1)">${clusterSvg()}</div>
-    <div class="leaf-deco" style="bottom:60px;left:20px;transform:rotate(10deg);opacity:0.08">${leafSvg(25,40,v+1)}</div>`;
-  if(n===1) return `
-    <div class="leaf-deco" style="top:-5px;right:-8px;transform:rotate(12deg)">${fernSvg()}</div>
-    <div class="leaf-deco" style="top:20px;right:40px;transform:rotate(-20deg);opacity:0.09">${leafSvg(28,45,v)}</div>
-    <div class="leaf-deco" style="bottom:0px;left:-12px;transform:rotate(-15deg) scaleX(-1)">${leafSvg(50,85,v+1)}</div>
-    <div class="leaf-deco" style="bottom:80px;left:15px;transform:rotate(5deg);opacity:0.08">${leafSvg(22,35,v+3)}</div>`;
-  return `
-    <div class="leaf-deco" style="top:-10px;right:-5px;transform:rotate(22deg)">${clusterSvg()}</div>
-    <div class="leaf-deco" style="top:40px;right:25px;transform:rotate(-8deg);opacity:0.08">${leafSvg(32,52,v+1)}</div>
-    <div class="leaf-deco" style="bottom:8px;left:-8px;transform:rotate(-25deg) scaleX(-1)">${fernSvg()}</div>
-    <div class="leaf-deco" style="bottom:100px;left:18px;transform:rotate(12deg);opacity:0.08">${leafSvg(20,32,v+2)}</div>`;
+  const n=v%3;
+  if(n===0) return `<div class="leaf-deco" style="top:-8px;right:-6px;transform:rotate(18deg)">${leafSvg(55,90,v)}</div><div class="leaf-deco" style="bottom:5px;left:-10px;transform:rotate(-28deg) scaleX(-1)">${clusterSvg()}</div>`;
+  if(n===1) return `<div class="leaf-deco" style="top:-5px;right:-8px;transform:rotate(12deg)">${fernSvg()}</div><div class="leaf-deco" style="bottom:0px;left:-12px;transform:rotate(-15deg) scaleX(-1)">${leafSvg(50,85,v+1)}</div>`;
+  return `<div class="leaf-deco" style="top:-10px;right:-5px;transform:rotate(22deg)">${clusterSvg()}</div><div class="leaf-deco" style="bottom:8px;left:-8px;transform:rotate(-25deg) scaleX(-1)">${fernSvg()}</div>`;
 }
 
-const FREQ=[{label:"幾乎不會",s:1},{label:"偶爾如此",s:2},{label:"滿常這樣",s:3},{label:"很自然地會",s:4}];
-
-const Q=[
-  // 自我覺察
-  {cat:"自我", text:"當情緒有點不對勁，我能說出「是什麼感受」，而不只是覺得怪怪的。"},
-  {cat:"自我", text:"我注意得到自己什麼時候在用滑手機或忙碌來迴避某個感受。"},
-  {cat:"自我", text:"當我對某件事感到抗拒，我會想了解這個抗拒在說什麼。"},
-  {cat:"自我", text:"我能辨識自己遇到壓力時習慣怎麼反應，而不是事後才發現。"},
-  {cat:"自我", text:"當我感到焦慮，我能陪自己待在那個感受裡，而不是立刻想讓它消失。"},
-  {cat:"自我", text:"即使犯錯或狀態不好，我不會因此全盤否定自己。"},
-  // 人際覺察
-  {cat:"人際", text:"和別人發生摩擦後，我能分清楚對方做了什麼，和我自己的感受，不會混在一起。"},
-  {cat:"人際", text:"在關係裡，我知道自己什麼時候是真心想幫忙，什麼時候是因為不好意思拒絕。"},
-  {cat:"人際", text:"與人對話時，我能感覺到自己什麼時候開始說場面話，而不是真實地說話。"},
-  {cat:"人際", text:"當我在關係中感到委屈，我能說出是什麼讓我委屈，而不是悶著或突然爆發。"},
-  {cat:"人際", text:"我能感覺到某段關係讓我消耗，而不是等到累壞了才意識到。"},
-  {cat:"人際", text:"我能在不失去自己立場的情況下，真正聽進對方說的話。"},
-  // 價值觀覺察
-  {cat:"價值觀", text:"我清楚自己真正在意什麼，不需要靠別人的反應來確認。"},
-  {cat:"價值觀", text:"回顧最近的選擇，我能感覺出哪些是真的想要，哪些是覺得應該。"},
-  {cat:"價值觀", text:"當我在做一件事，我知道自己為什麼要做它。"},
-  {cat:"價值觀", text:"我能分辨什麼樣的狀態讓我有活力，什麼讓我只是在撐。"},
-  {cat:"價值觀", text:"面對重要決定，我能感覺到內心有沒有真正同意。"},
-  {cat:"價值觀", text:"我做事情是因為自己想，而不是怕讓別人失望。"},
+// ── plant icons ──
+const PLANTS = [
+  `<svg width="44" height="44" viewBox="0 0 44 44" fill="none"><ellipse cx="22" cy="27" rx="10" ry="12" stroke="#8B6347" stroke-width="1.2" fill="none"/><path d="M22 15 C22 15 16 9 12 11 C8 13 10 19 14 19 C18 19 22 15 22 15Z" stroke="#8B6347" stroke-width="1" fill="none"/><path d="M22 15 C22 15 28 9 32 11 C36 13 34 19 30 19 C26 19 22 15 22 15Z" stroke="#8B6347" stroke-width="1" fill="none"/><line x1="22" y1="38" x2="22" y2="42" stroke="#8B6347" stroke-width="1"/></svg>`,
+  `<svg width="44" height="44" viewBox="0 0 44 44" fill="none"><line x1="22" y1="42" x2="22" y2="18" stroke="#8B6347" stroke-width="1.2"/><path d="M22 30 C22 30 12 26 10 18 C8 10 16 8 20 14 C22 17 22 22 22 30Z" stroke="#8B6347" stroke-width="1" fill="none"/><path d="M22 24 C22 24 32 20 34 12 C36 4 28 2 24 8 C22 11 22 17 22 24Z" stroke="#8B6347" stroke-width="1" fill="none"/></svg>`,
+  `<svg width="44" height="44" viewBox="0 0 44 44" fill="none"><line x1="22" y1="42" x2="22" y2="24" stroke="#8B6347" stroke-width="1.4"/><path d="M22 26 C14 26 8 20 8 13 C8 6 14 2 22 2 C30 2 36 6 36 13 C36 20 30 26 22 26Z" stroke="#8B6347" stroke-width="1.1" fill="none"/><line x1="22" y1="20" x2="16" y2="15" stroke="#8B6347" stroke-width="0.7"/><line x1="22" y1="20" x2="28" y2="15" stroke="#8B6347" stroke-width="0.7"/></svg>`,
+  `<svg width="44" height="44" viewBox="0 0 44 44" fill="none"><line x1="22" y1="42" x2="22" y2="28" stroke="#8B6347" stroke-width="1.4"/><path d="M22 28 C14 28 8 22 8 15 C8 8 14 4 22 4 C30 4 36 8 36 15 C36 22 30 28 22 28Z" stroke="#8B6347" stroke-width="1.1" fill="none"/><circle cx="22" cy="7" r="3" stroke="#8B6347" stroke-width="1" fill="none"/><path d="M17 5 C15 2 11 3 11 6" stroke="#8B6347" stroke-width="0.9" fill="none"/><path d="M27 5 C29 2 33 3 33 6" stroke="#8B6347" stroke-width="0.9" fill="none"/><path d="M14 10 C11 9 9 12 11 14" stroke="#8B6347" stroke-width="0.9" fill="none"/><path d="M30 10 C33 9 35 12 33 14" stroke="#8B6347" stroke-width="0.9" fill="none"/></svg>`
 ];
 
-const RES=[
-  {
-    range:[18,36], type:"覺察萌芽期", emoji:"🌱", bg:"#EDE3D8", col:"#5C3D22",
-    selfNote:"情緒和反應大多在意識之外自動運作，習慣讓感受自然流過。",
-    relNote:"在關係中較難辨識自己的需求，傾向以配合或迴避來維持平衡。",
-    valNote:"對自己真正在意的事還不太清晰，選擇常受外在期待影響。",
-    desc:"你的覺察之旅正要開始。目前大多數時候，情緒和反應是在你還沒意識到之前就已經發生了。這不是缺點，而是所有人覺察旅程的起點——你願意來做這個測驗，本身就是一個開始。",
-    blk:"習慣讓感受自然流過，不太會停下來問「這是什麼」。在關係裡傾向配合，對於自己真正想要什麼，也還在慢慢摸索中。",
-    inv:"如果你開始感覺「好像有什麼東西卡著」，卻不知道從哪裡入手，這正是很好的開始。我們可以一起，慢慢靠近。"
-  },
-  {
-    range:[37,50], type:"覺察探索期", emoji:"🌿", bg:"#DDE8D8", col:"#2E4A28",
-    selfNote:"能感知到情緒的存在，但常在「感覺到了」和「知道怎麼辦」之間卡住。",
-    relNote:"能察覺關係中的不舒服，但在清楚表達或調整互動模式上還在摸索。",
-    valNote:"開始意識到某些選擇不太對，但還不確定自己真正想要的是什麼。",
+// ── constants ──
+const FREQ = [{label:"幾乎不會",s:1},{label:"偶爾如此",s:2},{label:"滿常這樣",s:3},{label:"很自然地會",s:4}];
+const FREQ_LABELS = ["幾乎不會","偶爾如此","滿常這樣","很自然地會"];
+const PER_DIM = 4; // 每次抽幾題
+const TOTAL_Q = 24; // 總題數
+
+const DIMS = [
+  {key:"感知力", tag:"tag-0", color:"#8B6347", desc:"讀懂自己的情緒狀態"},
+  {key:"信任力", tag:"tag-1", color:"#7B6BAF", desc:"在失敗時仍相信自己"},
+  {key:"定向力", tag:"tag-2", color:"#A08030", desc:"知道自己為何而做"},
+  {key:"聆聽力", tag:"tag-3", color:"#5A8A5A", desc:"聽見身體與直覺的訊號"},
+  {key:"表達力", tag:"tag-4", color:"#A05050", desc:"在關係裡說出真實感受"},
+  {key:"連結力", tag:"tag-5", color:"#3A7A7A", desc:"感知關係的動態與消耗"},
+];
+
+// ── 題庫：每向度 6 題，每次隨機抽 4 題 ──
+const BANK = [
+  // dim 0 感知力（6題）
+  [ "當情緒有點不對勁，我能說出「是什麼感受」，而不只是覺得怪怪的。",
+    "我能區分相似的情緒——例如「失望」和「委屈」對我來說是不同的感受。",
+    "情緒出現的當下，我能注意到它，而不是事後才知道自己剛才有情緒。",
+    "我能說出是什麼具體的事讓我有這個感受，而不只是「就是不舒服」。",
+    "當我心情不好，我能停下來問自己「這個感受叫什麼名字」。",
+    "我的情緒變化，對我來說是可以被觀察和理解的，而不是完全說不清楚。" ],
+  // dim 1 信任力（6題）
+  [ "犯了錯或搞砸一件事，我不會因此覺得自己整個人都有問題。",
+    "狀態不好的時候，我對自己說話的方式，就像對一個好朋友那樣溫和。",
+    "不需要別人的肯定，我也能感覺到自己做的事是有價值的。",
+    "即使在最低落的時候，我還是相信自己有能力度過。",
+    "我能在不完美的狀態下，還是對自己有一份基本的接納。",
+    "被批評或否定之後，我能重新站回自己，而不是一直反覆自責。" ],
+  // dim 2 定向力（6題）
+  [ "我做一件事，能清楚說出自己為什麼要做它，而不只是「因為應該」。",
+    "回顧最近的選擇，我能感覺出哪些是真的想要，哪些是覺得不得不。",
+    "面對重要決定，我能感覺到內心有沒有真正同意，而不只是頭腦分析。",
+    "我做事情是因為自己想，而不是主要為了避免讓別人失望。",
+    "當我答應一件事，我清楚自己答應的理由是什麼。",
+    "我能分辨「我想要這個」和「我覺得我應該要這個」的差別。" ],
+  // dim 3 聆聽力（6題）
+  [ "當身體出現緊繃或不舒服，我會好奇它在說什麼，而不是直接忽略。",
+    "直覺告訴我某件事不對的時候，我能注意到這個訊號，不會完全跟頭腦走。",
+    "我能在疲憊出現的早期就感覺到，而不是等到撐不住了才意識到。",
+    "在做決定時，我會讓身體的感受也參與，而不是只靠理性分析。",
+    "當我靜下來的時候，我能感覺到身體在告訴我什麼。",
+    "我能辨識哪些事讓我身體感到放鬆，哪些讓我感到收緊。" ],
+  // dim 4 表達力（6題）
+  [ "在關係裡，我能說出自己的感受和需求，而不是悶著或繞彎子。",
+    "我說出來的話，和心裡真正想說的，大多數時候是一致的。",
+    "當我在關係中感到委屈，我能說出「是什麼讓我委屈」，而不是爆發或沉默。",
+    "說出真實感受之後，我不需要一直道歉或擔心對方怎麼看我。",
+    "我能在關係裡表達「我需要什麼」，而不是等對方猜。",
+    "當我不想做某件事，我能直接說「我不想」，而不是找藉口或勉強答應。" ],
+  // dim 5 連結力（6題）
+  [ "我能感覺到某段關係或某個互動讓我消耗，而不是等到很累了才發現。",
+    "和別人對話時，我能感覺到對方話語背後想被看見的是什麼。",
+    "我能在不失去自己的情況下，真正靠近對方，而不是只維持表面的和諧。",
+    "在關係裡，我清楚什麼讓我有活力、什麼讓我只是在撐。",
+    "我能感覺到自己在某段關係裡是真實的，還是在扮演一個角色。",
+    "當關係裡有張力出現，我能注意到它，而不是假裝沒事繼續。" ],
+];
+
+// ── 結果類型 ──
+const RES = [
+  { range:[24,47], type:"覺察萌芽期", plant:0, bg:"#EDE3D8", col:"#5C3D22",
+    desc:"你的覺察之旅正要開始。目前大多數時候，情緒和反應在你還沒意識到之前就已發生了。這不是缺點，而是所有人覺察旅程的起點——你願意來做這個測驗，本身就是一個開始。",
+    blk:"習慣讓感受自然流過，不太會停下來問「這是什麼」。在關係裡傾向配合，對自己真正想要什麼還在慢慢摸索。",
+    inv:"如果你開始感覺「好像有什麼東西卡著」，卻不知道從哪裡入手，這正是很好的開始。我們可以一起，慢慢靠近。" },
+  { range:[48,63], type:"覺察探索期", plant:1, bg:"#DDE8D8", col:"#2E4A28",
     desc:"你已經開始聽得見自己了。你能感覺到情緒或內在的訊號，但有時候感知到了之後，不太確定下一步可以做什麼。你知道有什麼需要被看見，只是還不太確定怎麼靠近它。",
-    blk:"能感覺到情緒，但容易在「這樣想對不對」上打轉。在價值觀上，有時知道某件事不對，卻說不清楚什麼才是真正想要的。",
-    inv:"你已經有感知的能力了，現在需要的是一個安全的空間，讓你練習深入下去。不需要想清楚才能開始，我們可以就從現在這裡出發。"
-  },
-  {
-    range:[51,62], type:"覺察成長期", emoji:"🌳", bg:"#E8DDD2", col:"#5C3D22",
-    selfNote:"有相當的觀察能力，能辨識情緒與慣性模式，但在觸發點前仍有自動反應。",
-    relNote:"能覺察關係動態，但在張力出現時，清醒和情緒有時還是會拉扯。",
-    valNote:"對自己在意的事有一定清晰度，但在壓力下有時還是會被外在標準拉走。",
+    blk:"能感覺到情緒，但容易在「這樣想對不對」上打轉。覺察到了卻還難以轉化成行動，或不確定感受到之後可以做什麼。",
+    inv:"你已經有感知的能力了，現在需要的是一個安全的空間，讓你練習深入下去。不需要想清楚才能開始，我們可以就從現在這裡出發。" },
+  { range:[64,79], type:"覺察成長期", plant:2, bg:"#E8DDD2", col:"#5C3D22",
     desc:"你有相當的自我觀察能力，能在很多時候辨識自己的情緒、需求和慣性模式。但在某些觸發點面前，你可能還是會繞回去，甚至納悶「我明明懂，怎麼還是這樣？」這不是你不夠努力，而是有些覺察需要更深的土壤才能生根。",
     blk:"在「知道」和「真正改變」之間，還有一段叫做「接納」的路。有時候不是需要更多理解，而是需要對那個還沒改變的自己，多一點溫柔。",
-    inv:"你已經走了很長一段路。下一步通常不是「更努力了解自己」，而是讓覺察更柔軟、更有彈性。如果你想聊聊那個還沒被鬆動的地方，我在。"
-  },
-  {
-    range:[63,72], type:"覺察整合期", emoji:"✦", bg:"#F0E6D6", col:"#5C3D22",
-    selfNote:"能與情緒同在，辨識慣性模式，在壓力下仍能回到自己。",
-    relNote:"能在關係中保持清醒，設立健康邊界，也能真正聽見對方。",
-    valNote:"對自己真正在意的事有清晰的認識，選擇來自內在而非外在期待。",
-    desc:"你有穩定的自我觀察能力，能與自己的情緒同在，也能在複雜的人際或內在狀態中保持清醒。你對自己的慣性模式和真正的價值觀有相當程度的認識，並且在持續深化中。覺察對你來說不是努力出來的，而是一種活著的方式。",
+    inv:"你已經走了很長一段路。下一步通常不是「更努力了解自己」，而是讓覺察更柔軟、更有彈性。如果你想聊聊那個還沒被鬆動的地方，我在。" },
+  { range:[80,96], type:"覺察整合期", plant:3, bg:"#F0E6D6", col:"#5C3D22",
+    desc:"你有穩定的自我觀察能力，能與自己的情緒同在，也能在複雜的人際或內在狀態中保持清醒。覺察對你來說不是努力出來的，而是一種活著的方式。",
     blk:"在整合期，卡關往往更細微——是關係深度、價值實踐，或在壓力下是否還能回到自己。覺察沒有終點，只有更深的地方。",
-    inv:"走到這裡很不容易。如果你想要有人陪你走得更深、更遠，我很樂意成為那個陪伴者。"
-  }
+    inv:"走到這裡很不容易。如果你想要有人陪你走得更深、更遠，我很樂意成為那個陪伴者。" },
 ];
 
-let cur=0, ans=new Array(Q.length).fill(null), phase="intro", sentEmail="";
-const maxSelf=Q.filter(q=>q.cat==="自我").length*4;
-const maxRel=Q.filter(q=>q.cat==="人際").length*4;
-const maxVal=Q.filter(q=>q.cat==="價值觀").length*4;
+// ── 隨機抽題 ──
+function shuffle(arr){
+  const a=[...arr];
+  for(let i=a.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [a[i],a[j]]=[a[j],a[i]];
+  }
+  return a;
+}
+function buildQuiz(){
+  // 每個向度從題庫隨機抽 PER_DIM 題，交錯排列避免同向度題目連續
+  const picked = BANK.map((pool,dim)=>
+    shuffle(pool).slice(0,PER_DIM).map(text=>({dim,text}))
+  );
+  // 交錯排列：先各取第1題，再各取第2題...
+  const result=[];
+  for(let i=0;i<PER_DIM;i++){
+    for(let d=0;d<DIMS.length;d++){
+      result.push(picked[d][i]);
+    }
+  }
+  return result;
+}
 
-function totalScore(){ return ans.reduce((s,a,i)=>a!==null?s+FREQ[a].s:s,0); }
-function catScore(cat){ return Q.reduce((s,q,i)=>q.cat===cat&&ans[i]!==null?s+FREQ[ans[i]].s:s,0); }
-function getRes(tot){ return RES.find(r=>tot>=r.range[0]&&tot<=r.range[1])||RES[RES.length-1]; }
+// ── 計算 ──
+function dimScores(Q,ans){
+  const s=[0,0,0,0,0,0];
+  Q.forEach((q,i)=>{
+    if(ans[i]!==null && ans[i]>=0 && ans[i]<=3){
+      s[q.dim]+=FREQ[ans[i]].s;
+    }
+  });
+  return s;
+}
+function totalScore(scores){ return scores.reduce((a,b)=>a+b,0); }
+function getRes(tot){
+  const found=RES.find(r=>tot>=r.range[0]&&tot<=r.range[1]);
+  if(found) return found;
+  return tot<RES[0].range[0] ? RES[0] : RES[RES.length-1];
+}
+function getMinIdx(scores){
+  let min=Infinity,idx=0;
+  scores.forEach((s,i)=>{ if(s<min){min=s;idx=i;} });
+  return idx;
+}
+function getMaxIdx(scores){
+  let max=-Infinity,idx=0;
+  scores.forEach((s,i)=>{ if(s>max){max=s;idx=i;} });
+  return idx;
+}
+// 每向度平均分轉換為1-4的雷達值
+function toRadarVals(scores){
+  return scores.map(s=>{
+    const avg=s/PER_DIM;
+    return Math.max(1,Math.min(4,avg));
+  });
+}
+// 向度標籤文字（分數/PER_DIM四捨五入對應FREQ）
+function freqLabel(score){
+  const avg=score/PER_DIM;
+  const idx=Math.max(0,Math.min(3,Math.round(avg)-1));
+  return FREQ_LABELS[idx];
+}
+
+// ── 雷達圖 ──
+function drawRadar(radarVals, canvasId){
+  const canvas=document.getElementById(canvasId);
+  if(!canvas) return;
+  const ctx=canvas.getContext('2d');
+  const cx=130,cy=130,r=95,n=6;
+  ctx.clearRect(0,0,260,260);
+  for(let lv=1;lv<=4;lv++){
+    ctx.beginPath();
+    for(let i=0;i<n;i++){
+      const a=(Math.PI*2/n)*i-Math.PI/2;
+      const pr=(r/4)*lv;
+      i===0?ctx.moveTo(cx+pr*Math.cos(a),cy+pr*Math.sin(a)):ctx.lineTo(cx+pr*Math.cos(a),cy+pr*Math.sin(a));
+    }
+    ctx.closePath();
+    ctx.strokeStyle=lv===4?"#DDD0C2":"#EDE3D8";
+    ctx.lineWidth=lv===4?1.2:0.6;
+    ctx.stroke();
+  }
+  for(let i=0;i<n;i++){
+    const a=(Math.PI*2/n)*i-Math.PI/2;
+    ctx.beginPath();ctx.moveTo(cx,cy);
+    ctx.lineTo(cx+r*Math.cos(a),cy+r*Math.sin(a));
+    ctx.strokeStyle="#EDE3D8";ctx.lineWidth=0.6;ctx.stroke();
+  }
+  ctx.beginPath();
+  radarVals.forEach((v,i)=>{
+    const a=(Math.PI*2/n)*i-Math.PI/2;
+    const pr=(r/4)*v;
+    i===0?ctx.moveTo(cx+pr*Math.cos(a),cy+pr*Math.sin(a)):ctx.lineTo(cx+pr*Math.cos(a),cy+pr*Math.sin(a));
+  });
+  ctx.closePath();
+  ctx.fillStyle="rgba(139,99,71,0.13)";ctx.fill();
+  ctx.strokeStyle="#8B6347";ctx.lineWidth=1.5;ctx.stroke();
+  radarVals.forEach((v,i)=>{
+    const a=(Math.PI*2/n)*i-Math.PI/2;
+    const pr=(r/4)*v;
+    ctx.beginPath();ctx.arc(cx+pr*Math.cos(a),cy+pr*Math.sin(a),4,0,Math.PI*2);
+    ctx.fillStyle="#8B6347";ctx.fill();
+  });
+  ctx.font="11px -apple-system,'Noto Sans TC',sans-serif";
+  ctx.fillStyle="#7A6553";ctx.textAlign="center";
+  DIMS.forEach((d,i)=>{
+    const a=(Math.PI*2/n)*i-Math.PI/2;
+    ctx.fillText(d.key,cx+(r+22)*Math.cos(a),cy+(r+22)*Math.sin(a)+4);
+  });
+}
+
+// ── state ──
+let Q=[], ans=[], phase="intro";
 
 function render(){
   const app=document.getElementById("app");
   if(phase==="intro"){
-    app.innerHTML=`<div class="wrap">
-      ${decoLeaves(0)}
-      <div class="content">
+    app.innerHTML=`<div class="wrap">${decoLeaves(0)}<div class="content">
       <p style="font-size:11px;color:var(--text-muted);margin-bottom:1rem;letter-spacing:0.08em;text-transform:uppercase">覺察力測驗</p>
       <h1 style="font-size:24px;font-weight:400;line-height:1.5;margin-bottom:0.75rem">你有多了解自己？<br><span style="font-weight:500">日常覺察力自我測驗</span></h1>
-      <p style="font-size:15px;color:var(--text-sub);line-height:1.85;margin-bottom:1.75rem">18道題目，從<strong style="font-weight:500;color:var(--brown-deep)">自我覺察</strong>、<strong style="font-weight:500;color:#3D5C35">人際覺察</strong>與<strong style="font-weight:500;color:var(--value-color)">價值觀覺察</strong>三個向度，幫助你看見目前的內在狀態。<br><br>選擇最接近你真實狀態的頻率，沒有對錯。</p>
+      <p style="font-size:15px;color:var(--text-sub);line-height:1.85;margin-bottom:1.75rem">24道題目，從六個覺察向度幫助你看見自己的內在地圖——哪裡是你的強項，哪裡是你可以補足的地方。<br><br>選擇最接近你真實狀態的頻率，沒有對錯。</p>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:0.85rem">
+        ${DIMS.map(d=>`<span style="padding:0.25rem 0.7rem;background:#EDE3D8;color:var(--brown-deep);border-radius:20px;font-size:12px">${d.key}</span>`).join("")}
+      </div>
       <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:2rem">
-        <span style="padding:0.3rem 0.75rem;background:#EDE3D8;color:var(--brown-deep);border-radius:20px;font-size:12px">18 道題目</span>
-        <span style="padding:0.3rem 0.75rem;background:#EDE3D8;color:var(--brown-deep);border-radius:20px;font-size:12px">約 4 分鐘</span>
-        <span style="padding:0.3rem 0.75rem;background:#EDE3D8;color:var(--brown-deep);border-radius:20px;font-size:12px">三個覺察向度</span>
-        <span style="padding:0.3rem 0.75rem;background:#EDE3D8;color:var(--brown-deep);border-radius:20px;font-size:12px">個人化報告書</span>
+        <span style="padding:0.3rem 0.75rem;background:#EDE3D8;color:var(--brown-deep);border-radius:20px;font-size:12px">24 道題目</span>
+        <span style="padding:0.3rem 0.75rem;background:#EDE3D8;color:var(--brown-deep);border-radius:20px;font-size:12px">約 5 分鐘</span>
+        <span style="padding:0.3rem 0.75rem;background:#EDE3D8;color:var(--brown-deep);border-radius:20px;font-size:12px">每次題目不同</span>
+        <span style="padding:0.3rem 0.75rem;background:#EDE3D8;color:var(--brown-deep);border-radius:20px;font-size:12px">六向度雷達圖</span>
       </div>
       <button onclick="startQuiz()" style="padding:0.8rem 2rem;background:var(--brown-dark);color:#FDF9F5;border:none;border-radius:8px;font-size:16px;font-weight:500;cursor:pointer">開始測驗</button>
-      </div>
-    </div>`;
+    </div></div>`;
   } else if(phase==="quiz"){
-    const q=Q[cur], pct=(cur/Q.length)*100;
-    const tagClass=q.cat==="人際"?"tag-rel":q.cat==="價值觀"?"tag-val":"tag-self";
-    app.innerHTML=`<div class="wrap">
-      ${decoLeaves(cur)}
-      <div class="content">
+    const cur=ans.length, q=Q[cur], pct=(cur/TOTAL_Q)*100;
+    const d=DIMS[q.dim];
+    app.innerHTML=`<div class="wrap">${decoLeaves(cur%3)}<div class="content">
       <div class="progress-bg"><div class="progress-fill" style="width:${pct}%"></div></div>
-      <div class="q-meta">第 ${cur+1} 題 / 共 ${Q.length} 題</div>
-      <span class="q-tag ${tagClass}">${q.cat==="人際"?"人際覺察":q.cat==="價值觀"?"價值觀覺察":"自我覺察"}</span>
+      <div class="q-meta">第 ${cur+1} 題 / 共 ${TOTAL_Q} 題</div>
+      <span class="q-tag ${d.tag}">${d.key}</span>
       <div class="q-text">${q.text}</div>
       <div class="freq-group">
-        ${FREQ.map((f,i)=>`<button class="freq-btn ${ans[cur]===i?'sel':''}" onclick="pick(${i})">${f.label}</button>`).join("")}
+        ${FREQ.map((f,i)=>`<button class="freq-btn" onclick="pick(${i})">${f.label}</button>`).join("")}
       </div>
       <div class="nav">
         <button class="btn-back" onclick="goBack()" ${cur===0?'style="visibility:hidden"':""}>上一題</button>
-        <span style="font-size:13px;color:var(--text-muted)">${ans.filter(a=>a!==null).length} / ${Q.length}</span>
+        <span style="font-size:13px;color:var(--text-muted)">${cur} / ${TOTAL_Q}</span>
         <span></span>
       </div>
-      </div>
-    </div>`;
+    </div></div>`;
   } else if(phase==="result"){
-    const tot=totalScore();
-    const ss=catScore("自我"), rs=catScore("人際"), vs=catScore("價值觀");
+    const scores=dimScores(Q,ans);
+    const tot=totalScore(scores);
     const r=getRes(tot);
-    const spct=Math.round(ss/maxSelf*100), rpct=Math.round(rs/maxRel*100), vpct=Math.round(vs/maxVal*100);
-    const tpct=Math.round((tot-18)/54*100);
-    const mailHtml=sentEmail
-      ?`<div class="sent">報告書已寄出至 ${sentEmail}，請記得查收（含垃圾信件匣）</div>`
-      :`<div class="mail-title">領取你的個人覺察報告書</div>
-        <div class="mail-desc">輸入 email，我將寄送對應你類型的完整報告書，包含三個向度的深度解析與日常練習建議。</div>
-        <div class="mail-row">
-          <input class="mail-input" id="ei" type="email" placeholder="your@email.com"/>
-          <button class="mail-btn" onclick="submitMail()">寄送報告書</button>
-        </div>
-        <div id="merr" style="font-size:13px;color:#8B3A2A;margin-top:6px;display:none">請輸入有效的 email 地址</div>`;
-    app.innerHTML=`<div class="wrap">
-      ${decoLeaves(2)}
-      <div class="content">
+    const minIdx=getMinIdx(scores);
+    const maxIdx=getMaxIdx(scores);
+    const radarVals=toRadarVals(scores);
+
+    // 驗證：確保所有值合理
+    console.log("scores:",scores,"total:",tot,"type:",r.type,"radar:",radarVals);
+
+    app.innerHTML=`<div class="wrap">${decoLeaves(2)}<div class="content">
       <div style="font-size:11px;color:var(--text-muted);margin-bottom:0.75rem;letter-spacing:0.08em;text-transform:uppercase">你的覺察狀態報告</div>
       <div style="display:flex;align-items:center;gap:16px;margin-bottom:1.5rem">
-        <div class="score-circle" style="background:${r.bg};color:${r.col}">${tpct}%</div>
+        <div class="plant-icon" style="background:${r.bg}">${PLANTS[r.plant]}</div>
         <div>
-          <div style="display:inline-block;padding:0.3rem 0.9rem;background:${r.bg};color:${r.col};border-radius:20px;font-size:13px;font-weight:500;margin-bottom:0.4rem">${r.emoji} ${r.type}</div>
-          <div style="font-size:13px;color:var(--text-muted)">總覺察分數 ${tot} / 72</div>
+          <div style="display:inline-block;padding:0.3rem 0.9rem;background:${r.bg};color:${r.col};border-radius:20px;font-size:13px;font-weight:500;margin-bottom:0.4rem">${r.type}</div>
+          <div style="font-size:13px;color:var(--text-muted)">你的六向度覺察地圖</div>
         </div>
       </div>
-      <div class="grid3">
-        <div class="block" style="padding:0.85rem">
-          <div class="block-label">自我覺察</div>
-          <div style="font-size:16px;font-weight:500;margin-bottom:4px;color:var(--text-main)">${ss} / ${maxSelf}</div>
-          <div class="dim-bar-bg"><div class="dim-bar-fill" style="width:${spct}%;background:var(--brown-dark)"></div></div>
-          <div style="font-size:11px;color:var(--text-muted);margin-top:7px;line-height:1.5">${r.selfNote}</div>
-        </div>
-        <div class="block" style="padding:0.85rem">
-          <div class="block-label">人際覺察</div>
-          <div style="font-size:16px;font-weight:500;margin-bottom:4px;color:var(--text-main)">${rs} / ${maxRel}</div>
-          <div class="dim-bar-bg"><div class="dim-bar-fill" style="width:${rpct}%;background:var(--green-sage)"></div></div>
-          <div style="font-size:11px;color:var(--text-muted);margin-top:7px;line-height:1.5">${r.relNote}</div>
-        </div>
-        <div class="block" style="padding:0.85rem">
-          <div class="block-label">價值觀覺察</div>
-          <div style="font-size:16px;font-weight:500;margin-bottom:4px;color:var(--text-main)">${vs} / ${maxVal}</div>
-          <div class="dim-bar-bg"><div class="dim-bar-fill" style="width:${vpct}%;background:var(--milk-tea)"></div></div>
-          <div style="font-size:11px;color:var(--text-muted);margin-top:7px;line-height:1.5">${r.valNote}</div>
-        </div>
+      <div style="display:flex;justify-content:center;margin-bottom:1rem">
+        <canvas id="radarCanvas" width="260" height="260"></canvas>
       </div>
+      <div class="dim-grid">
+        ${DIMS.map((d,i)=>`
+          <div class="dim-card">
+            <div class="dim-name">${d.desc}</div>
+            <div class="dim-label" style="color:${d.color}">${d.key}</div>
+            <div class="dim-bar-bg"><div class="dim-bar-fill" style="width:${Math.round((scores[i]/(PER_DIM*4))*100)}%;background:${d.color}"></div></div>
+            <div style="font-size:11px;color:var(--text-muted);margin-top:4px">${freqLabel(scores[i])}</div>
+          </div>`).join("")}
+      </div>
+      <div class="block" style="border-left:3px solid ${DIMS[maxIdx].color}">
+        <div class="block-label">你的強項</div>
+        <div class="block-text"><strong style="color:${DIMS[maxIdx].color}">${DIMS[maxIdx].key}</strong> — ${DIMS[maxIdx].desc}，這是你目前最穩定的覺察能力。</div>
+      </div>
+      <div class="block" style="border-left:3px solid ${DIMS[minIdx].color};margin-top:0.75rem">
+        <div class="block-label">最值得補足的地方</div>
+        <div class="block-text"><strong style="color:${DIMS[minIdx].color}">${DIMS[minIdx].key}</strong> — ${DIMS[minIdx].desc}，這是目前最值得深入探索的向度。</div>
+      </div>
+      <div class="divider"></div>
       <p style="font-size:15px;line-height:1.8;margin-bottom:1.25rem;color:var(--text-main)">${r.desc}</p>
       <div class="block"><div class="block-label">常見卡關點</div><div class="block-text">${r.blk}</div></div>
       <div class="block" style="margin-top:0.75rem"><div class="block-label">給你的話</div><div class="block-text">${r.inv}</div></div>
       <div class="divider"></div>
-      <div class="mail-card">${mailHtml}</div>
       <div class="cta-area">
-        <div style="position:absolute;top:-10px;right:-5px;opacity:0.12;transform:rotate(15deg)">${leafSvg(60,95,3)}</div>
         <div class="cta-label">LIMITED · 限時早鳥</div>
-        <div class="cta-title">你不需要一個人想清楚</div>
-        <div class="cta-desc">如果這份測驗讓你感覺到「好像有什麼卡著」，或者你在關係裡常常不知道怎麼說、怎麼回應自己——這正是一個好時機，讓我們一起坐下來談談。<br><br>我目前開放限量的早鳥深度 1:1 覺察對話，名額有限，歡迎你在還有位置的時候來。</div>
+        <div class="cta-title">你的覺察地圖，只是開始</div>
+        <div class="cta-desc">這份測驗讓你看見自己現在站在哪裡——但真正的改變，往往需要有人陪你走進那個還沒被看見的地方。<br><br>如果你的<strong style="color:var(--brown-deep)">${DIMS[minIdx].key}</strong>讓你有感覺，或者你想更深入理解自己的覺察地圖，現在正是一個好時機。<br><br>我目前開放限量的早鳥深度 1:1 覺察對話，名額有限，歡迎你在還有位置的時候來。</div>
         <button class="cta-btn" onclick="bookCall()">預約深度 1:1 覺察對話 →</button>
       </div>
       <div style="text-align:center;margin-top:1.25rem">
         <button class="btn-back" onclick="restart()">重新測驗</button>
       </div>
-      </div>
-    </div>`;
+    </div></div>`;
+    setTimeout(()=>drawRadar(radarVals,'radarCanvas'),50);
   }
 }
 
-function submitMail(){
-  const v=document.getElementById("ei").value.trim();
-  const err=document.getElementById("merr");
-  if(!v||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)){err.style.display="block";return;}
-  err.style.display="none"; sentEmail=v; render();
-}
-function startQuiz(){ phase="quiz"; render(); }
 function pick(i){
-  ans[cur]=i;
-  render();
-  setTimeout(()=>{ goNext(); }, 420);
+  if(i<0||i>3) return; // 防呆
+  ans.push(i);
+  if(ans.length>=TOTAL_Q){ phase="result"; render(); }
+  else { setTimeout(()=>render(),380); render(); }
 }
-function goNext(){ cur<Q.length-1?cur++:phase="result"; render(); }
-function goBack(){ if(cur>0){cur--;render();} }
-function restart(){ cur=0;ans=new Array(Q.length).fill(null);phase="intro";sentEmail="";render(); }
+function goBack(){
+  if(ans.length>0){ ans.pop(); render(); }
+}
+function startQuiz(){ Q=buildQuiz(); ans=[]; phase="quiz"; render(); }
+function restart(){ Q=[]; ans=[]; phase="intro"; render(); }
 function bookCall(){ window.open("https://forms.gle/16WM4BDYXKunSdyq9","_blank"); }
 render();
 </script>
